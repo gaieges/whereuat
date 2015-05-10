@@ -1,5 +1,5 @@
 //starting this file
-var port = process.env.PORT || 8000;
+var port = process.env.SVCPORT || 8000;
 
 
 var express = require('express');

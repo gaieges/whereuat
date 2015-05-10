@@ -35,9 +35,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     chef.cookbooks_path = [ "." ]
     chef.log_level      = "info"
 
-    chef.add_recipe       "nginx"
     chef.add_recipe       "docker"
-    chef.add_recipe       "docker-mongodb::default"
     chef.add_recipe       "docker-mongodb::install"
     chef.add_recipe       "whereuat"
 
