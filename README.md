@@ -20,7 +20,15 @@ Spin up a new instance by running the following in the repo:
 vagrant up
 ```
 
-You should then have a working ubuntu instance that should be running mongo and a nodejs app within docker containers
+You should then have a working ubuntu instance that should be running mongo and a nodejs app within docker containers.  Connect to it via either:
+
+```shell
+# for ssh access
+vagrant ssh
+
+# for api access
+curl http://<host>:8000/
+```
 
 
 # Components
