@@ -2,3 +2,4 @@
 .DS_Store
 server-app/api/node_modules/
 .vagrant
+server-app/api/dump
