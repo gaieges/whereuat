@@ -2,7 +2,7 @@ var mongoose     = require('mongoose');
 var Schema       = mongoose.Schema;
 
 PersonSchema = new Schema({
-      username: {type: String, trim: true},
+      user:     {type: String, trim: true},
       name:     {type: String, trim: true},
       loc: {
         lat: { type: Number },
@@ -11,3 +11,4 @@ PersonSchema = new Schema({
   });
 
 mongoose.model('Person', PersonSchema);
+module.exports = mongoose;

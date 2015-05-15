@@ -13,5 +13,8 @@ docker_image 'whereuat' do
 end
 
 docker_container 'whereuat' do
+  link '/mongod:mongod'
+  detach true
+  port '8000:8000'
   action :run
 end

@@ -10,36 +10,27 @@ var mongoose   = require('mongoose');
 // Make a new Express app
 var app = express();
 
-app.use(bodyParser);
-
 // Connect to mongodb
 console.log( 'connecting to mongodb..' );
-mongoose.set('debug', true );
 var connect = function() {
-  mongoose.connect("mongodb://localhost/whereuat");
+//  mongoose.connect("mongodb://172.17.42.1/whereuat");
+  mongoose.connect("mongodb://127.0.0.1/whereuat");
 };
 connect();
 mongoose.connection.on('error', console.log);
 mongoose.connection.on('disconnected', connect);
 
-var PeopleModel = mongoose.model( "Person", PersonSchema );
+var Person = mongoose.model( "Person" );
 
-// for( var i = 1; i < 50; i++ ) {
-//   var newperson = PeopleModel({
-//     name:"fullname "+i,
-//     username:"user"+i,
-//     loc: {lat: i*5%50, lon: (i/2*10%50)}
-//   });
-//   newperson.save( );
+// for( var i=0; i<2000; i++) {
+//   var people = new Person({name:"test-name-"+i,user:"usr-name-"+i,loc:{lat: (i*15.3)%50.3, lon: (i*135.32)%50.6}});
+//   people.save();
 // }
 
 app.get('/people', function (req, res){
-  return PeopleModel.find(function (err, people) {
-    if (!err) {
-      return res.json(people);
-    } else {
-      return console.log(err);
-    }
+  return Person.find({}, function (err, people) {
+    if (err) return console.error(err);
+    return res.json( people );
   });
 });
 

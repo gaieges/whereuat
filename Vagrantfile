@@ -17,7 +17,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # If this value is a shorthand to a box in Vagrant Cloud then
   # config.vm.box_url doesn't need to be specified.
   # config.vm.box = 'trusty64-updated'
-  config.vm.box = 'ubuntu/vivid64'
+  # config.vm.box = 'ubuntu/vivid64'
+  config.vm.box = 'ubuntu/trusty64'
 
   # Assign this VM to a host-only network IP, allowing you to access it
   # via the IP. Host-only networks can talk to the host machine as well as
@@ -30,6 +31,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 
   config.vm.provision "shell", inline: "apt-get update"
+
+  # fix for vivid tty issues
+  # https://github.com/Varying-Vagrant-Vagrants/VVV/issues/517
+  # config.vm.provision "shell", inline: "sed -i '/mesg n/d' /root/.profile"
+
 
   config.vm.provision "chef_solo" do |chef|
     chef.cookbooks_path = [ "." ]
